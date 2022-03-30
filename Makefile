@@ -96,18 +96,18 @@ ifeq ($(HOST_OS),Darwin)
   # Using MacPorts?
   ifeq ($(shell test -d /opt/local/lib && echo y),y)
     OSX_GCC_VER = $(shell find /opt/local/bin/gcc* | grep -oE '[[:digit:]]+' | sort -n | uniq | tail -1)
-    CC := gcc-mp-$(OSX_GCC_VER)
-    CXX := g++-mp-$(OSX_GCC_VER)
-    CPP := cpp-mp-$(OSX_GCC_VER) -P
+    CC := gcc-11
+    CXX := g++-11
+    CPP := cpp-11 -P
     PLATFORM_CFLAGS := -I /opt/local/include
     PLATFORM_LDFLAGS := -L /opt/local/lib
   else
     # Using Homebrew?
     ifeq ($(shell which brew >/dev/null 2>&1 && echo y),y)
       OSX_GCC_VER = $(shell find `brew --prefix`/bin/gcc* | grep -oE '[[:digit:]]+' | sort -n | uniq | tail -1)
-      CC := gcc-$(OSX_GCC_VER)
-      CXX := g++-$(OSX_GCC_VER)
-      CPP := cpp-$(OSX_GCC_VER) -P
+      CC := gcc-11
+      CXX := g++-11
+      CPP := cpp-11 -P
       PLATFORM_CFLAGS := -I /usr/local/include
       PLATFORM_LDFLAGS := -L /usr/local/lib
     else
@@ -450,7 +450,7 @@ SEG_FILES := $(SEGMENT_ELF_FILES) $(ACTOR_ELF_FILES) $(LEVEL_ELF_FILES)
 
 ############################ Compiler Options ##################################
 
-INCLUDE_CFLAGS := -I include -I $(BUILD_DIR) -I $(BUILD_DIR)/include -I src -I .
+INCLUDE_CFLAGS := -I /opt/homebrew/include -I include -I $(BUILD_DIR) -I $(BUILD_DIR)/include -I src -I .
 ENDIAN_BITWIDTH := $(BUILD_DIR)/endian-and-bitwidth
 
 # Huge deleted N64 section was here
