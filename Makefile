@@ -96,18 +96,18 @@ ifeq ($(HOST_OS),Darwin)
   # Using MacPorts?
   ifeq ($(shell test -d /opt/local/lib && echo y),y)
     OSX_GCC_VER = $(shell find /opt/local/bin/gcc* | grep -oE '[[:digit:]]+' | sort -n | uniq | tail -1)
-    CC := gcc-11
-    CXX := g++-11
-    CPP := cpp-11 -P
+    CC := gcc-9
+    CXX := g++-9
+    CPP := cpp-9 -P
     PLATFORM_CFLAGS := -I /opt/local/include
     PLATFORM_LDFLAGS := -L /opt/local/lib
   else
     # Using Homebrew?
     ifeq ($(shell which brew >/dev/null 2>&1 && echo y),y)
       OSX_GCC_VER = $(shell find `brew --prefix`/bin/gcc* | grep -oE '[[:digit:]]+' | sort -n | uniq | tail -1)
-      CC := gcc-11
-      CXX := g++-11
-      CPP := cpp-11 -P
+      CC := gcc-9
+      CXX := g++-9
+      CPP := cpp-9 -P
       PLATFORM_CFLAGS := -I /usr/local/include
       PLATFORM_LDFLAGS := -L /usr/local/lib
     else
