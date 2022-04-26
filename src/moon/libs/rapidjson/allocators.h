@@ -317,6 +317,7 @@ public:
     }
 
     //! Allocates a memory block. (concept Allocator)
+    /*
     void* Malloc(size_t size) {
         RAPIDJSON_NOEXCEPT_ASSERT(shared_->refcount > 0);
         if (!size)
@@ -331,6 +332,7 @@ public:
         shared_->chunkHead->size += size;
         return buffer;
     }
+    */
 
     //! Resizes a memory block (concept Allocator)
     void* Realloc(void* originalPtr, size_t originalSize, size_t newSize) {
