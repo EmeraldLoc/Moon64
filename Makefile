@@ -93,16 +93,7 @@ endif
 # macOS overrides
 ifeq ($(HOST_OS),Darwin)
   OSX_BUILD := 1
-  # Using MacPorts?
-  ifeq ($(shell test -d /opt/local/lib && echo y),y)
-    OSX_GCC_VER = $(shell find /opt/local/bin/gcc* | grep -oE '[[:digit:]]+' | sort -n | uniq | tail -1)
-    CC := gcc-9
-    CXX := g++-9
-    CPP := cpp-9 -P
-    PLATFORM_CFLAGS := -I /opt/local/include
-    PLATFORM_LDFLAGS := -L /opt/local/lib
-  else
-    # Using Homebrew?
+  # Using Homebrew?
     ifeq ($(shell which brew >/dev/null 2>&1 && echo y),y)
       OSX_GCC_VER = $(shell find `brew --prefix`/bin/gcc* | grep -oE '[[:digit:]]+' | sort -n | uniq | tail -1)
       CC := gcc-9
@@ -113,7 +104,6 @@ ifeq ($(HOST_OS),Darwin)
     else
       $(error No suitable macOS toolchain found, have you installed Homebrew?)
     endif
-  endif
 endif
 
 ifneq ($(TARGET_BITS),0)
