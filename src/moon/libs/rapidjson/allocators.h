@@ -318,7 +318,7 @@ public:
 
     //! Allocates a memory block. (concept Allocator)
     void* Malloc(size_t size) {
-        RAPIDJSON_NOEXCEPT_ASSERT(shared_->refcount > 0);
+        //RAPIDJSON_NOEXCEPT_ASSERT(shared_->refcount > 0);
         if (!size)
             return NULL;
 
